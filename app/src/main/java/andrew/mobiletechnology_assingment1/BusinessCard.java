@@ -14,17 +14,35 @@ public class BusinessCard
     private String mobileNumber;
     private String workNumber;
     private String companyName;
+    private int id;
 
     private Picture cardPhoto;
 
-    public BusinessCard(String firstName, String lastName, String email, String mobileNumber, String workNumber, String companyName)
+    public BusinessCard()
     {
+        this.id = 0;
+        this.firstName = null;
+        this.lastName = null;
+        this.email = null;
+        this.mobileNumber = null;
+        this.workNumber = null;
+        this.companyName = null;
+    }
+
+    public BusinessCard(int id, String firstName, String lastName, String email, String mobileNumber, String workNumber, String companyName)
+    {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.mobileNumber = mobileNumber;
         this.workNumber = workNumber;
         this.companyName = companyName;
+    }
+
+    public int getID()
+    {
+        return this.id;
     }
 
     public String getFirstName()
@@ -85,6 +103,11 @@ public class BusinessCard
     public void setCompanyName(String name)
     {
         this.companyName = name;
+    }
+
+    public void setID(int id)
+    {
+        this.id = id;
     }
 
 
