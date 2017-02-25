@@ -1,12 +1,16 @@
 package andrew.mobiletechnology_assingment1;
 
 import android.graphics.Picture;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
 
 /**
  * Created by Andrew on 22/02/2017.
  */
 
-public class BusinessCard
+public class BusinessCard implements Parcelable
 {
     private String firstName;
     private String lastName;
@@ -14,35 +18,29 @@ public class BusinessCard
     private String mobileNumber;
     private String workNumber;
     private String companyName;
-    private int id;
+    private String website;
 
     private Picture cardPhoto;
 
-    public BusinessCard()
+    /*public BusinessCard()
     {
-        this.id = 0;
         this.firstName = null;
         this.lastName = null;
         this.email = null;
         this.mobileNumber = null;
         this.workNumber = null;
         this.companyName = null;
-    }
+        this.website = null;
+    }*/
 
-    public BusinessCard(int id, String firstName, String lastName, String email, String mobileNumber, String workNumber, String companyName)
-    {
-        this.id = id;
+    public BusinessCard(String firstName, String lastName, String email, String mobileNumber, String workNumber, String companyName, String website) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.mobileNumber = mobileNumber;
         this.workNumber = workNumber;
         this.companyName = companyName;
-    }
-
-    public int getID()
-    {
-        return this.id;
+        this.website = website;
     }
 
     public String getFirstName()
@@ -70,9 +68,14 @@ public class BusinessCard
         return this.workNumber;
     }
 
-    public String companyName()
+    public String getcompanyName()
     {
         return this.companyName;
+    }
+
+    public String getWebsite()
+    {
+        return this.website;
     }
 
     public void setFirstName(String name)
@@ -105,11 +108,56 @@ public class BusinessCard
         this.companyName = name;
     }
 
-    public void setID(int id)
+    public void setWebsite(String website)
     {
-        this.id = id;
+        this.website = website;
     }
 
 
+    // Parcelling part
+    public BusinessCard(Parcel in)
+    {
+        String[] data = new String[7];
 
+        in.readStringArray(data);
+        // the order needs to be the same as in writeToParcel() method
+        this.firstName = data[0];
+        this.lastName = data[1];
+        this.email = data[2];
+        this.mobileNumber = data[3];
+        this.workNumber = data[4];
+        this.companyName = data[5];
+        this.website = data[6];
+    }
+
+    @Override
+    public int describeContents()
+    {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags)
+    {
+        dest.writeStringArray(new String[] { this.firstName,
+                                             this.lastName,
+                                             this.email,
+                                             this.mobileNumber,
+                                             this.workNumber,
+                                             this.companyName,
+                                             this.website});
+    }
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator()
+    {
+        public BusinessCard createFromParcel(Parcel in)
+        {
+            return new BusinessCard(in);
+        }
+
+        public BusinessCard[] newArray(int size)
+        {
+            return new BusinessCard[size];
+        }
+    };
 }

@@ -21,6 +21,14 @@
         <activity
             android:name=".CardListingMenu"
             android:label="@string/title_activity_card_lisiting_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".LoadCaptureImageMenu"
+            android:label="@string/title_activity_load_capture_image_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CardDetailsMenu"
+            android:label="@string/title_activity_card_details_menu"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

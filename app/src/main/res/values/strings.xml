@@ -4,4 +4,6 @@
     <string name="quick_access_load">Load Image</string>
     <string name="quick_access_capture">Capture Image</string>
     <string name="title_activity_card_lisiting_menu">Business Card Holder</string>
+    <string name="title_activity_load_capture_image_menu">Business Card Holder</string>
+    <string name="title_activity_card_details_menu">Business Card Holder</string>
 </resources>
