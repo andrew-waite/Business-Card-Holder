@@ -60,11 +60,11 @@ public class CardDetailsMenu extends AppCompatActivity {
     private void createListView()
     {
         this.itemsForDisplay.add("Full Name:  " + this.businessCardDetails.getFirstName() + " " + this.businessCardDetails.getLastName());
-        this.itemsForDisplay.add("Email:  " + this.businessCardDetails.getEmail() == null ? "Not Found!" : this.businessCardDetails.getEmail());
-        this.itemsForDisplay.add("Mobile Number:  " + this.businessCardDetails.getMobileNumber() == null ? "Not Found!" : this.businessCardDetails.getMobileNumber());
-        this.itemsForDisplay.add("Work Number:  " +  this.businessCardDetails.getWorkNumber() == null ? "Not Found!" : this.businessCardDetails.getWorkNumber());
-        this.itemsForDisplay.add("Website:  " + this.businessCardDetails.getWebsite() == null ? "Not Found!" : this.businessCardDetails.getWebsite());
-        this.itemsForDisplay.add("Company name:  " + this.businessCardDetails.getcompanyName() == null ? "Not Found!" : this.businessCardDetails.getcompanyName());
+        this.itemsForDisplay.add("Email:  " + this.businessCardDetails.getEmail());
+        this.itemsForDisplay.add("Mobile Number:  " + this.businessCardDetails.getMobileNumber());
+        this.itemsForDisplay.add("Work Number:  " + this.businessCardDetails.getWorkNumber());
+        this.itemsForDisplay.add("Website:  " + this.businessCardDetails.getWebsite());
+        this.itemsForDisplay.add("Company name:  " + this.businessCardDetails.getcompanyName());
         //Create an adapter for the listView and add the ArrayList to the adapter.
         list.setAdapter(new ArrayAdapter<>(CardDetailsMenu.this, android.R.layout.simple_list_item_1, this.itemsForDisplay));
     }
