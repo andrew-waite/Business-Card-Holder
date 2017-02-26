@@ -34,7 +34,7 @@ public class CardListingMenu extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_lisiting_menu);
         businessCards = new ArrayList<>();
-        this.itemsForDisplay = new ArrayList<String>();
+        this.itemsForDisplay = new ArrayList<>();
         list = (ListView)findViewById(R.id.listview);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -85,15 +85,15 @@ public class CardListingMenu extends AppCompatActivity
         {
             do
             {
-                BusinessCard card = new BusinessCard(null, null, null, null, null, null, null);
-                //card.setID(cursor.getInt(0)); Don't use ID as this is only for the primary key in the database
+                BusinessCard card = new BusinessCard("", "", "", "", "", "", "");
+                //card.setID(cursor.getInt(0)); //Don't use ID as this is only for the primary key in the database
                 card.setFirstName(cursor.getString(1));
                 card.setLastName(cursor.getString(2));
-                card.setEmail(cursor.getString(3));
-                card.setMobileNumber(cursor.getString(4));
-                card.setWorkNumber(cursor.getString(5));
-                card.setCompanyName(cursor.getString(6));
-                card.setWebsite(cursor.getString(7));
+                card.setEmail(cursor.getString(3) == null ? "" : cursor.getString(3));
+                card.setMobileNumber(cursor.getString(4) == null ? "" : cursor.getString(4));
+                card.setWorkNumber(cursor.getString(5) == null ? "" : cursor.getString(5));
+                card.setCompanyName(cursor.getString(6) == null ? "" : cursor.getString(6));
+                card.setWebsite(cursor.getString(7) == null ? "" : cursor.getString(7));
 
                 businessCards.add(card);
             }
@@ -115,13 +115,15 @@ public class CardListingMenu extends AppCompatActivity
         }
         else
         {
+            businessCards.add(new BusinessCard("Henry", "Jones", "something", "something", "something", "something", "something"));
+
             for(BusinessCard card : businessCards)
             {
                 this.itemsForDisplay.add(card.getFirstName() + " " + card.getLastName());
             }
 
             //Create an adapter for the listView and add the ArrayList to the adapter.
-            list.setAdapter(new ArrayAdapter<String>(CardListingMenu.this, android.R.layout.simple_list_item_1, this.itemsForDisplay));
+            list.setAdapter(new ArrayAdapter<>(CardListingMenu.this, android.R.layout.simple_list_item_1, this.itemsForDisplay));
             list.setOnItemClickListener(new AdapterView.OnItemClickListener()
             {
                 @Override
@@ -130,10 +132,7 @@ public class CardListingMenu extends AppCompatActivity
                     //args2 is the listViews Selected index
 
                     Intent intent = new Intent(CardListingMenu.this, CardDetailsMenu.class);
-                    Bundle bundle = intent.getExtras();
-                    bundle.putParcelable("BusinessCard",  CardListingMenu.businessCards.get(0));
-                    intent.putExtras(bundle);
-                    //intent.putExtra("BusinessCard", businessCards.get(arg2));
+                    intent.putExtra("BusinessCard", CardListingMenu.this.businessCards.get(arg2));
                     startActivity(intent);
 
                 }

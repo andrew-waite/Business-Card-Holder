@@ -20,7 +20,7 @@ public class BusinessCard implements Parcelable
     private String companyName;
     private String website;
 
-    private Picture cardPhoto;
+   // private Picture cardPhoto;
 
     /*public BusinessCard()
     {
@@ -157,7 +157,7 @@ public class BusinessCard implements Parcelable
 
         public BusinessCard[] newArray(int size)
         {
-            return new BusinessCard[size];
+            return new BusinessCard[0];
         }
     };
 }

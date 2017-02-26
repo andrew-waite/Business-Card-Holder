@@ -30,7 +30,7 @@ public class CardDetailsMenu extends AppCompatActivity {
         this.itemsForDisplay = new ArrayList<String>();
         this.list = (ListView)findViewById(R.id.listview);
 
-       this.businessCardDetails = getIntent().getExtras().getParcelable("BusinessCard");
+       this.businessCardDetails = getIntent().getParcelableExtra("BusinessCard");
 
         this.createListView();
     }
