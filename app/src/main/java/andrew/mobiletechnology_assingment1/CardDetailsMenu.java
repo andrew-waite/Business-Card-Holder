@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +60,8 @@ public class CardDetailsMenu extends AppCompatActivity {
 
     private void createListView()
     {
+        TextView headingTextView = (TextView)findViewById(R.id.textView5);
+        headingTextView.setText(headingTextView.getText() + " " + this.businessCardDetails.getFirstName() + " " + this.businessCardDetails.getLastName());
         this.itemsForDisplay.add("Full Name:  " + this.businessCardDetails.getFirstName() + " " + this.businessCardDetails.getLastName());
         this.itemsForDisplay.add("Email:  " + this.businessCardDetails.getEmail());
         this.itemsForDisplay.add("Mobile Number:  " + this.businessCardDetails.getMobileNumber());

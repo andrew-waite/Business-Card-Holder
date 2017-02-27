@@ -13,6 +13,24 @@
     tools:context="andrew.mobiletechnology_assingment1.CardDetailsMenu"
     tools:showIn="@layout/activity_card_details_menu">
 
+    <TextView
+        android:text="Details for Business Card:"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView5"
+        android:textAlignment="center"
+        android:textSize="18sp" />
+
+    <Button
+        android:text="Edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/button5" />
+
     <ListView
         android:id="@+id/listview"
         android:scrollbars="vertical"
@@ -21,11 +39,12 @@
         android:layout_gravity="fill_vertical"
         android:headerDividersEnabled="true"
         android:footerDividersEnabled="true"
-        android:layout_alignParentEnd="true"
         android:dividerHeight="2dp"
         android:drawSelectorOnTop="false"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true">
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp"
+        android:layout_above="@+id/button5">
     </ListView>
 
 </RelativeLayout>
