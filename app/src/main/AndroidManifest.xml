@@ -29,6 +29,10 @@
         <activity
             android:name=".CardDetailsMenu"
             android:label="@string/title_activity_card_details_menu"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EditDetailsMenu"
+            android:label="@string/title_activity_edit_details_menu"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
