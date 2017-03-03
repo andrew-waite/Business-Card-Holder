@@ -1,10 +1,12 @@
 package andrew.mobiletechnology_assingment1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +19,7 @@ import java.util.List;
 
 public class CardDetailsMenu extends AppCompatActivity {
 
-    private BusinessCard businessCardDetails;
+    private BusinessCard businessCardDetails = null;
     private ListView list;
     private List<String> itemsForDisplay;
 
@@ -31,8 +33,20 @@ public class CardDetailsMenu extends AppCompatActivity {
         this.itemsForDisplay = new ArrayList<String>();
         this.list = (ListView)findViewById(R.id.listview);
 
-       this.businessCardDetails = getIntent().getParcelableExtra("BusinessCard");
+        if(this.businessCardDetails == null) { this.businessCardDetails = getIntent().getParcelableExtra("BusinessCardFromListMenu"); }
 
+    }
+
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
         this.createListView();
     }
 
@@ -58,17 +72,43 @@ public class CardDetailsMenu extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    /**
+     * Have to clear the list and heading before calling in onResume, otherwise doubling of data in list and heading will occur
+     */
     private void createListView()
     {
         TextView headingTextView = (TextView)findViewById(R.id.textView5);
+        headingTextView.setText(""); //Clear the heading before resuming the activity
         headingTextView.setText(headingTextView.getText() + " " + this.businessCardDetails.getFirstName() + " " + this.businessCardDetails.getLastName());
+
+        this.itemsForDisplay.clear(); //Clear the list before resuming the activity
+
         this.itemsForDisplay.add("Full Name:  " + this.businessCardDetails.getFirstName() + " " + this.businessCardDetails.getLastName());
         this.itemsForDisplay.add("Email:  " + this.businessCardDetails.getEmail());
         this.itemsForDisplay.add("Mobile Number:  " + this.businessCardDetails.getMobileNumber());
         this.itemsForDisplay.add("Work Number:  " + this.businessCardDetails.getWorkNumber());
-        this.itemsForDisplay.add("Website:  " + this.businessCardDetails.getWebsite());
         this.itemsForDisplay.add("Company name:  " + this.businessCardDetails.getcompanyName());
+        this.itemsForDisplay.add("Website:  " + this.businessCardDetails.getWebsite());
         //Create an adapter for the listView and add the ArrayList to the adapter.
         list.setAdapter(new ArrayAdapter<>(CardDetailsMenu.this, android.R.layout.simple_list_item_1, this.itemsForDisplay));
+    }
+
+    public void toView(View view)
+    {
+        Intent intent = new Intent(CardDetailsMenu.this, EditDetailsMenu.class);
+        intent.putExtra("BusinessCard", this.businessCardDetails);
+        startActivityForResult(intent, 1);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 1 && resultCode == RESULT_OK)
+        {
+            this.businessCardDetails = data.getParcelableExtra("BusinessCard");
+            Log.println(Log.DEBUG, "A", "Called success");
+        }
     }
 }

@@ -88,8 +88,8 @@ public class CardListingMenu extends AppCompatActivity
                 /**
                  * Perform a is null check on each field before adding it to the object, as a Parceable cannot serialize an object with null attributes
                  */
-                BusinessCard card = new BusinessCard("", "", "", "", "", "", "");
-                //card.setID(cursor.getInt(0)); //Don't use ID as this is only for the primary key in the database
+                BusinessCard card = new BusinessCard(0, "", "", "", "", "", "", "");
+                card.setID(cursor.getInt(0));
                 card.setFirstName(cursor.getString(1));
                 card.setLastName(cursor.getString(2));
                 card.setEmail(cursor.getString(3) == null ? "Not Found!" : cursor.getString(3));
@@ -133,7 +133,7 @@ public class CardListingMenu extends AppCompatActivity
                     //args2 is the listViews Selected index
 
                     Intent intent = new Intent(CardListingMenu.this, CardDetailsMenu.class);
-                    intent.putExtra("BusinessCard", CardListingMenu.this.businessCards.get(arg2));
+                    intent.putExtra("BusinessCardFromListMenu", CardListingMenu.this.businessCards.get(arg2));
                     startActivity(intent);
 
                 }

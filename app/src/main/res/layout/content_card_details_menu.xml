@@ -29,7 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/button5" />
+        android:id="@+id/button5"
+        android:onClick="toView"/>
 
     <ListView
         android:id="@+id/listview"

@@ -12,6 +12,7 @@ import java.io.Serializable;
 
 public class BusinessCard implements Parcelable
 {
+    private int id;
     private String firstName;
     private String lastName;
     private String email;
@@ -33,7 +34,8 @@ public class BusinessCard implements Parcelable
         this.website = null;
     }*/
 
-    public BusinessCard(String firstName, String lastName, String email, String mobileNumber, String workNumber, String companyName, String website) {
+    public BusinessCard(int id, String firstName, String lastName, String email, String mobileNumber, String workNumber, String companyName, String website) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -41,6 +43,11 @@ public class BusinessCard implements Parcelable
         this.workNumber = workNumber;
         this.companyName = companyName;
         this.website = website;
+    }
+
+    public int getId()
+    {
+        return this.id;
     }
 
     public String getFirstName()
@@ -76,6 +83,11 @@ public class BusinessCard implements Parcelable
     public String getWebsite()
     {
         return this.website;
+    }
+
+    public void setID(int id)
+    {
+        this.id = id;
     }
 
     public void setFirstName(String name)
@@ -117,17 +129,18 @@ public class BusinessCard implements Parcelable
     // Parcelling part
     public BusinessCard(Parcel in)
     {
-        String[] data = new String[7];
+        String[] data = new String[8];
 
         in.readStringArray(data);
         // the order needs to be the same as in writeToParcel() method
-        this.firstName = data[0];
-        this.lastName = data[1];
-        this.email = data[2];
-        this.mobileNumber = data[3];
-        this.workNumber = data[4];
-        this.companyName = data[5];
-        this.website = data[6];
+        this.id = Integer.valueOf(data[0]);
+        this.firstName = data[1];
+        this.lastName = data[2];
+        this.email = data[3];
+        this.mobileNumber = data[4];
+        this.workNumber = data[5];
+        this.companyName = data[6];
+        this.website = data[7];
     }
 
     @Override
@@ -139,7 +152,8 @@ public class BusinessCard implements Parcelable
     @Override
     public void writeToParcel(Parcel dest, int flags)
     {
-        dest.writeStringArray(new String[] { this.firstName,
+        dest.writeStringArray(new String[] { Integer.toString(this.id),
+                                             this.firstName,
                                              this.lastName,
                                              this.email,
                                              this.mobileNumber,
