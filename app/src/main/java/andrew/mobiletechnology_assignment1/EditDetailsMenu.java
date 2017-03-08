@@ -1,10 +1,8 @@
-package andrew.mobiletechnology_assingment1;
+package andrew.mobiletechnology_assignment1;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -13,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import andrew.mobiletechnology_assignment1.database.DBHandler;
+import andrew.mobiletechnology_assingment1.R;
 
 public class EditDetailsMenu extends AppCompatActivity
 {
@@ -64,8 +63,8 @@ public class EditDetailsMenu extends AppCompatActivity
         (((EditText)findViewById(R.id.text_lastname))).setText(this.businessCard.getLastName());
         (((EditText)findViewById(R.id.text_email))).setText(this.businessCard.getEmail());
         (((EditText)findViewById(R.id.text_mobilephone))).setText(this.businessCard.getMobileNumber());
-        (((EditText)findViewById(R.id.text_workphone))).setText(this.businessCard.getWorkNumber());
-        (((EditText)findViewById(R.id.text_companyname))).setText(this.businessCard.getcompanyName());
+        (((EditText)findViewById(R.id.text_address))).setText(this.businessCard.getAddress());
+        (((EditText)findViewById(R.id.text_companyname))).setText(this.businessCard.getAddress());
         (((EditText)findViewById(R.id.text_website))).setText(this.businessCard.getWebsite());
 
     }
@@ -81,12 +80,12 @@ public class EditDetailsMenu extends AppCompatActivity
         this.businessCard.setLastName(((EditText)findViewById(R.id.text_lastname)).getText().toString());
         this.businessCard.setEmail(((EditText)findViewById(R.id.text_email)).getText().toString());
         this.businessCard.setMobileNumber(((EditText)findViewById(R.id.text_mobilephone)).getText().toString());
-        this.businessCard.setWorkNumber(((EditText)findViewById(R.id.text_workphone)).getText().toString());
+        this.businessCard.setAddress(((EditText)findViewById(R.id.text_address)).getText().toString());
         this.businessCard.setCompanyName(((EditText)findViewById(R.id.text_companyname)).getText().toString());
         this.businessCard.setWebsite(((EditText)findViewById(R.id.text_website)).getText().toString());
 
         SQLiteDatabase dbw = this.dbHandler.getWritableDatabase();
-        dbw.execSQL("UPDATE CARDS SET FIRST_NAME='" + this.businessCard.getFirstName() + "',LAST_NAME='" + this.businessCard.getLastName() + "',EMAIL='" + this.businessCard.getEmail() + "',MOBILE_PHONE='" + this.businessCard.getMobileNumber() + "',WORK_PHONE='" + this.businessCard.getWorkNumber() + "',COMPANY_NAME='" + this.businessCard.getcompanyName() + "',WEBSITE='" + this.businessCard.getWebsite() + "'WHERE ID=" + this.businessCard.getId() + ";");
+        dbw.execSQL("UPDATE CARDS SET FIRST_NAME='" + this.businessCard.getFirstName() + "',LAST_NAME='" + this.businessCard.getLastName() + "',EMAIL='" + this.businessCard.getEmail() + "',MOBILE_PHONE='" + this.businessCard.getMobileNumber() + "',ADDRESS='" + this.businessCard.getAddress() + "',COMPANY_NAME='" + this.businessCard.getCompanyName() + "',WEBSITE='" + this.businessCard.getWebsite() + "'WHERE ID=" + this.businessCard.getId() + ";");
 
         /*Intent intent = new Intent(EditDetailsMenu.this, CardDetailsMenu.class);
         intent.putExtra("BusinessCard", this.businessCard);

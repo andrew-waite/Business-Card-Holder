@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="andrew.mobiletechnology_assingment1.CardDetailsMenu"
+    tools:context="andrew.mobiletechnology_assingment1.andrew.mobiletechnology_assignment1.CardDetailsMenu"
     tools:showIn="@layout/activity_card_details_menu">
 
     <TextView

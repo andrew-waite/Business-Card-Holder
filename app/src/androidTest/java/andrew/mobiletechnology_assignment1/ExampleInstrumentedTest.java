@@ -1,4 +1,4 @@
-package andrew.mobiletechnology_assingment1;
+package andrew.mobiletechnology_assignment1;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

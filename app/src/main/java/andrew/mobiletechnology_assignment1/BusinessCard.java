@@ -1,10 +1,7 @@
-package andrew.mobiletechnology_assingment1;
+package andrew.mobiletechnology_assignment1;
 
-import android.graphics.Picture;
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import java.io.Serializable;
 
 /**
  * Created by Andrew on 22/02/2017.
@@ -17,7 +14,7 @@ public class BusinessCard implements Parcelable
     private String lastName;
     private String email;
     private String mobileNumber;
-    private String workNumber;
+    private String address;
     private String companyName;
     private String website;
 
@@ -34,13 +31,13 @@ public class BusinessCard implements Parcelable
         this.website = null;
     }*/
 
-    public BusinessCard(int id, String firstName, String lastName, String email, String mobileNumber, String workNumber, String companyName, String website) {
+    public BusinessCard(int id, String firstName, String lastName, String email, String mobileNumber, String address, String companyName, String website) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.mobileNumber = mobileNumber;
-        this.workNumber = workNumber;
+        this.address = address;
         this.companyName = companyName;
         this.website = website;
     }
@@ -70,12 +67,12 @@ public class BusinessCard implements Parcelable
         return this.mobileNumber;
     }
 
-    public String getWorkNumber()
+    public String getAddress()
     {
-        return this.workNumber;
+        return this.address;
     }
 
-    public String getcompanyName()
+    public String getCompanyName()
     {
         return this.companyName;
     }
@@ -110,9 +107,9 @@ public class BusinessCard implements Parcelable
         this.mobileNumber = number;
     }
 
-    public void setWorkNumber(String number)
+    public void setAddress(String address)
     {
-        this.workNumber = number;
+        this.address = address;
     }
 
     public void setCompanyName(String name)
@@ -138,7 +135,7 @@ public class BusinessCard implements Parcelable
         this.lastName = data[2];
         this.email = data[3];
         this.mobileNumber = data[4];
-        this.workNumber = data[5];
+        this.address = data[5];
         this.companyName = data[6];
         this.website = data[7];
     }
@@ -157,7 +154,7 @@ public class BusinessCard implements Parcelable
                                              this.lastName,
                                              this.email,
                                              this.mobileNumber,
-                                             this.workNumber,
+                                             this.address,
                                              this.companyName,
                                              this.website});
     }

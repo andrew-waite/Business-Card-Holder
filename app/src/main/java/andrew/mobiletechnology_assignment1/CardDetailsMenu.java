@@ -1,9 +1,7 @@
-package andrew.mobiletechnology_assingment1;
+package andrew.mobiletechnology_assignment1;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,6 +14,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import andrew.mobiletechnology_assingment1.R;
 
 public class CardDetailsMenu extends AppCompatActivity {
 
@@ -87,8 +87,8 @@ public class CardDetailsMenu extends AppCompatActivity {
         this.itemsForDisplay.add("Full Name:  " + this.businessCardDetails.getFirstName() + " " + this.businessCardDetails.getLastName());
         this.itemsForDisplay.add("Email:  " + this.businessCardDetails.getEmail());
         this.itemsForDisplay.add("Mobile Number:  " + this.businessCardDetails.getMobileNumber());
-        this.itemsForDisplay.add("Work Number:  " + this.businessCardDetails.getWorkNumber());
-        this.itemsForDisplay.add("Company name:  " + this.businessCardDetails.getcompanyName());
+        this.itemsForDisplay.add("Address:  " + this.businessCardDetails.getAddress());
+        this.itemsForDisplay.add("Company name:  " + this.businessCardDetails.getCompanyName());
         this.itemsForDisplay.add("Website:  " + this.businessCardDetails.getWebsite());
         //Create an adapter for the listView and add the ArrayList to the adapter.
         list.setAdapter(new ArrayAdapter<>(CardDetailsMenu.this, android.R.layout.simple_list_item_1, this.itemsForDisplay));

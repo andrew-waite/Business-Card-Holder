@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Work Number"
                 android:inputType="phone"
-                android:id="@+id/text_workphone"
+                android:id="@+id/text_address"
                 android:imeOptions="actionDone"/>
         </android.support.design.widget.TextInputLayout>
 

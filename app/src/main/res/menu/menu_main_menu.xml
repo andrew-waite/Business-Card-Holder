@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="andrew.mobiletechnology_assingment1.MainMenu">
+    tools:context="andrew.mobiletechnology_assingment1.andrew.mobiletechnology_assignment1.MainMenu">
     <item
         android:id="@+id/actions_quick_access_load"
         android:orderInCategory="100"

@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="andrew.mobiletechnology_assingment1">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainMenu"
+            android:name="andrew.mobiletechnology_assignment1.MainMenu"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -19,19 +22,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CardListingMenu"
+            android:name="andrew.mobiletechnology_assignment1.CardListingMenu"
             android:label="@string/title_activity_card_lisiting_menu"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".LoadCaptureImageMenu"
+            android:name="andrew.mobiletechnology_assignment1.LoadCaptureImageMenu"
             android:label="@string/title_activity_load_capture_image_menu"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CardDetailsMenu"
+            android:name="andrew.mobiletechnology_assignment1.CardDetailsMenu"
             android:label="@string/title_activity_card_details_menu"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".EditDetailsMenu"
+            android:name="andrew.mobiletechnology_assignment1.EditDetailsMenu"
             android:label="@string/title_activity_edit_details_menu"
             android:noHistory="true"
             android:theme="@style/AppTheme.NoActionBar"></activity>

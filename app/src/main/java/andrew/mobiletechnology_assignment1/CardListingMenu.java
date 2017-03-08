@@ -1,4 +1,4 @@
-package andrew.mobiletechnology_assingment1;
+package andrew.mobiletechnology_assignment1;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,11 +15,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import andrew.mobiletechnology_assignment1.database.DBHandler;
+import andrew.mobiletechnology_assingment1.R;
 
 public class CardListingMenu extends AppCompatActivity
 {
@@ -40,8 +40,18 @@ public class CardListingMenu extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         dbHandler = new DBHandler(this, null, null, 1);
+        SQLiteDatabase dbw = dbHandler.getWritableDatabase();
+
+        //Insert some dummy data into the database
+        dbw.execSQL("INSERT INTO CARDS(FIRST_NAME, LAST_NAME) VALUES ('KENNY', 'G');");
+        dbw.execSQL("INSERT INTO CARDS(FIRST_NAME, LAST_NAME, WEBSITE) VALUES ('Andrew', 'Waite', 'eaglehawk.com.au');");
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
         createListView();
     }
 
@@ -72,13 +82,10 @@ public class CardListingMenu extends AppCompatActivity
     private void createListView()
     {
         SQLiteDatabase db = dbHandler.getReadableDatabase();
-        SQLiteDatabase dbw = dbHandler.getWritableDatabase();
-
-        //Insert some dummy data into the database
-        dbw.execSQL("INSERT INTO CARDS(FIRST_NAME, LAST_NAME) VALUES ('KENNY', 'G');");
-        dbw.execSQL("INSERT INTO CARDS(FIRST_NAME, LAST_NAME, WEBSITE) VALUES ('Andrew', 'Waite', 'eaglehawk.com.au');");
 
         Cursor cursor = db.rawQuery("SELECT * FROM CARDS" , null);
+
+        businessCards.clear();
 
         //Reads all data from table CARDS and creates BusinessCard objects from that
         if(cursor.moveToFirst())
@@ -94,7 +101,7 @@ public class CardListingMenu extends AppCompatActivity
                 card.setLastName(cursor.getString(2));
                 card.setEmail(cursor.getString(3) == null ? "Not Found!" : cursor.getString(3));
                 card.setMobileNumber(cursor.getString(4) == null ? "Not Found!" : cursor.getString(4));
-                card.setWorkNumber(cursor.getString(5) == null ? "Not Found!" : cursor.getString(5));
+                card.setAddress(cursor.getString(5) == null ? "Not Found!" : cursor.getString(5));
                 card.setCompanyName(cursor.getString(6) == null ? "Not Found!" : cursor.getString(6));
                 card.setWebsite(cursor.getString(7) == null ? "Not Found!" : cursor.getString(7));
 
@@ -118,6 +125,9 @@ public class CardListingMenu extends AppCompatActivity
         }
         else
         {
+
+            this.itemsForDisplay.clear();
+
             for(BusinessCard card : businessCards)
             {
                 this.itemsForDisplay.add(card.getFirstName() + " " + card.getLastName());
