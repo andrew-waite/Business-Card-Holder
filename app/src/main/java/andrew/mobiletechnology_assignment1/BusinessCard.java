@@ -18,19 +18,6 @@ public class BusinessCard implements Parcelable
     private String companyName;
     private String website;
 
-   // private Picture cardPhoto;
-
-    /*public BusinessCard()
-    {
-        this.firstName = null;
-        this.lastName = null;
-        this.email = null;
-        this.mobileNumber = null;
-        this.workNumber = null;
-        this.companyName = null;
-        this.website = null;
-    }*/
-
     public BusinessCard(int id, String firstName, String lastName, String email, String mobileNumber, String address, String companyName, String website) {
         this.id = id;
         this.firstName = firstName;
@@ -123,7 +110,7 @@ public class BusinessCard implements Parcelable
     }
 
 
-    // Parcelling part
+    //Formatting the data for parcelling
     public BusinessCard(Parcel in)
     {
         String[] data = new String[8];

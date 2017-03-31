@@ -7,6 +7,6 @@
     <string name="title_activity_load_capture_image_menu">Business Card Holder</string>
     <string name="title_activity_card_details_menu">Business Card Holder</string>
     <string name="title_activity_edit_details_menu">Business Card Holder</string>
-    <string name="visionAPIKey">e42368327b6d4ab69165689aeb865a80</string>
+    <string name="subscription_key">50caaf1c89624b9caea7d45a84de741d</string>
     <string name="loading">Currently processing your image please wait</string>
 </resources>

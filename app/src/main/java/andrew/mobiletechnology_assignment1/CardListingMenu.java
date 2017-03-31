@@ -12,14 +12,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import andrew.mobiletechnology_assignment1.adapters.ImageListAdapter;
 import andrew.mobiletechnology_assignment1.database.DBHandler;
-import andrew.mobiletechnology_assingment1.R;
 
 public class CardListingMenu extends AppCompatActivity
 {
@@ -27,7 +26,7 @@ public class CardListingMenu extends AppCompatActivity
 
     ListView list;
     private static List<BusinessCard> businessCards;
-    private List<String> itemsForDisplay;
+    private ArrayList<BusinessCard> itemsForDisplay;
 
     public void onCreate(Bundle savedInstanceState)
     {
@@ -40,12 +39,12 @@ public class CardListingMenu extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        dbHandler = new DBHandler(this, null, null, 1);
-        SQLiteDatabase dbw = dbHandler.getWritableDatabase();
+        dbHandler = new DBHandler(this, "CardDatabase.db", null, 1);
+       // SQLiteDatabase dbw = dbHandler.getWritableDatabase();
 
         //Insert some dummy data into the database
-        dbw.execSQL("INSERT INTO CARDS(FIRST_NAME, LAST_NAME) VALUES ('KENNY', 'G');");
-        dbw.execSQL("INSERT INTO CARDS(FIRST_NAME, LAST_NAME, WEBSITE) VALUES ('Andrew', 'Waite', 'eaglehawk.com.au');");
+        //dbw.execSQL("INSERT INTO CARDS(FIRST_NAME, LAST_NAME) VALUES ('KENNY', 'G');");
+        //dbw.execSQL("INSERT INTO CARDS(FIRST_NAME, LAST_NAME, WEBSITE) VALUES ('Andrew', 'Waite', 'eaglehawk.com.au');");
     }
 
     @Override
@@ -72,7 +71,10 @@ public class CardListingMenu extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.actions_quick_access_load || id == R.id.actions_quick_access_load)
+        {
+            Intent intent = new Intent(CardListingMenu.this, LoadCaptureImageMenu.class);
+            startActivity(intent);
             return true;
         }
 
@@ -130,11 +132,12 @@ public class CardListingMenu extends AppCompatActivity
 
             for(BusinessCard card : businessCards)
             {
-                this.itemsForDisplay.add(card.getFirstName() + " " + card.getLastName());
+                this.itemsForDisplay.add(card);
             }
 
             //Create an adapter for the listView and add the ArrayList to the adapter.
-            list.setAdapter(new ArrayAdapter<>(CardListingMenu.this, android.R.layout.simple_list_item_1, this.itemsForDisplay));
+            //list.setAdapter(new ArrayAdapter<>(CardListingMenu.this, android.R.layout.simple_list_item_1, this.itemsForDisplay));
+            list.setAdapter(new ImageListAdapter(CardListingMenu.this, android.R.layout.simple_list_item_1, this.itemsForDisplay));
             list.setOnItemClickListener(new AdapterView.OnItemClickListener()
             {
                 @Override

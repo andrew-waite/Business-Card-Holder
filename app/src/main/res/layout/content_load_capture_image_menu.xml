@@ -10,7 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="andrew.mobiletechnology_assingment1.andrew.mobiletechnology_assignment1.LoadCaptureImageMenu"
+    tools:context="andrew.mobiletechnology_assignment1.LoadCaptureImageMenu"
     tools:showIn="@layout/activity_load_capture_image_menu">
 
     <Button
@@ -28,7 +28,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/button4"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="openCamera"/>
 
     <TextView
         android:text="Use the load image button below to pick a business card photo from your photo library"

@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.EditText;
 
 import andrew.mobiletechnology_assignment1.database.DBHandler;
-import andrew.mobiletechnology_assingment1.R;
 
 public class EditDetailsMenu extends AppCompatActivity
 {
@@ -27,9 +26,9 @@ public class EditDetailsMenu extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        this.dbHandler = new DBHandler(this, null, null, 1);
+        this.dbHandler = new DBHandler(this, "CardDatabase.db", null, 1);
         this.businessCard = this.getIntent().getParcelableExtra("BusinessCard");
-        this.popoulateFields();
+        this.populateFields();
 
     }
 
@@ -50,14 +49,18 @@ public class EditDetailsMenu extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+
+        if (id == R.id.actions_quick_access_load || id == R.id.actions_quick_access_load)
+        {
+            Intent intent = new Intent(EditDetailsMenu.this, LoadCaptureImageMenu.class);
+            startActivity(intent);
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void popoulateFields()
+    public void populateFields()
     {
         (((EditText)findViewById(R.id.text_firstname))).setText(this.businessCard.getFirstName());
         (((EditText)findViewById(R.id.text_lastname))).setText(this.businessCard.getLastName());

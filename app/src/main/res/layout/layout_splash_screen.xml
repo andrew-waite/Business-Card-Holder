@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:indeterminate="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:id="@+id/splash_screen_progressbar"/>
 
     <TextView android:layout_gravity="bottom"
         android:layout_height="wrap_content"
@@ -17,5 +18,6 @@
         android:text="@string/loading"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="102dp" />
+        android:layout_marginTop="102dp"
+        android:id="@+id/splash_screen_textview"/>
 </RelativeLayout>

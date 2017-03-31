@@ -15,8 +15,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import andrew.mobiletechnology_assingment1.R;
-
 public class CardDetailsMenu extends AppCompatActivity {
 
     private BusinessCard businessCardDetails = null;
@@ -65,7 +63,10 @@ public class CardDetailsMenu extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.actions_quick_access_load || id == R.id.actions_quick_access_load)
+        {
+            Intent intent = new Intent(CardDetailsMenu.this, LoadCaptureImageMenu.class);
+            startActivity(intent);
             return true;
         }
 

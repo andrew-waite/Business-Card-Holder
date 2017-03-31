@@ -1,4 +1,4 @@
-package andrew.mobiletechnology_assingment1;
+package andrew.mobiletechnology_assignment1;
 
 import org.junit.Test;
 
