@@ -26,7 +26,7 @@ public class EditDetailsMenu extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        this.dbHandler = new DBHandler(this, "CardDatabase.db", null, 1);
+        this.dbHandler = new DBHandler(this, "CardDatabaseTwo.db", null, 1);
         this.businessCard = this.getIntent().getParcelableExtra("BusinessCard");
         this.populateFields();
 
@@ -50,7 +50,7 @@ public class EditDetailsMenu extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
 
-        if (id == R.id.actions_quick_access_load || id == R.id.actions_quick_access_load)
+        if (id == R.id.actions_quick_access_load || id == R.id.actions_quick_access_capture)
         {
             Intent intent = new Intent(EditDetailsMenu.this, LoadCaptureImageMenu.class);
             startActivity(intent);

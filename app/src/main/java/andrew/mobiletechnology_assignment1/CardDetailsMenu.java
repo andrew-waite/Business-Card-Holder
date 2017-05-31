@@ -15,14 +15,16 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardDetailsMenu extends AppCompatActivity {
+public class CardDetailsMenu extends AppCompatActivity
+{
 
     private BusinessCard businessCardDetails = null;
     private ListView list;
     private List<String> itemsForDisplay;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_details_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -49,21 +51,23 @@ public class CardDetailsMenu extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main_menu, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.actions_quick_access_load || id == R.id.actions_quick_access_load)
+        if (id == R.id.actions_quick_access_load || id == R.id.actions_quick_access_capture)
         {
             Intent intent = new Intent(CardDetailsMenu.this, LoadCaptureImageMenu.class);
             startActivity(intent);

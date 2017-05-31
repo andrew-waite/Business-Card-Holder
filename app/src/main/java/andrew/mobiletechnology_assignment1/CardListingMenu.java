@@ -39,7 +39,7 @@ public class CardListingMenu extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        dbHandler = new DBHandler(this, "CardDatabase.db", null, 1);
+        dbHandler = new DBHandler(this, "CardDatabaseTwo.db", null, 1);
        // SQLiteDatabase dbw = dbHandler.getWritableDatabase();
 
         //Insert some dummy data into the database
@@ -71,7 +71,7 @@ public class CardListingMenu extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.actions_quick_access_load || id == R.id.actions_quick_access_load)
+        if (id == R.id.actions_quick_access_load || id == R.id.actions_quick_access_capture)
         {
             Intent intent = new Intent(CardListingMenu.this, LoadCaptureImageMenu.class);
             startActivity(intent);

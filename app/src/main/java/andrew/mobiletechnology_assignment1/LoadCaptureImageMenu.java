@@ -69,13 +69,12 @@ public class LoadCaptureImageMenu extends AppCompatActivity
         if(this.client == null)
         this.client = new VisionServiceRestClient(getString(R.string.subscription_key));
 
-        this.dbHandler =  new DBHandler(this, "CardDatabase.db", null, 1);
+        this.dbHandler =  new DBHandler(this, "CardDatabaseTwo.db", null, 1);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main_menu, menu);
         return true;
     }
@@ -83,13 +82,9 @@ public class LoadCaptureImageMenu extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.actions_quick_access_load || id == R.id.quick_access_capture)
+        if (id == R.id.actions_quick_access_load || id == R.id.actions_quick_access_capture)
         {
             return true;
         }
@@ -99,17 +94,6 @@ public class LoadCaptureImageMenu extends AppCompatActivity
 
     public void openGallery(View view)
     {
-        /*Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        getIntent.setType("image/*");
-
-        Intent pickIntent = new Intent(Intent.ACTION_PICK);
-        pickIntent.setType("image/*");
-
-        Intent chooserIntent = Intent.createChooser(getIntent, "Select Image Application");
-        chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { pickIntent });
-
-        startActivityForResult(chooserIntent, REQUEST_IMAGE_CODE);*/
-
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         if (intent.resolveActivity(getPackageManager()) != null)
@@ -144,8 +128,6 @@ public class LoadCaptureImageMenu extends AppCompatActivity
     @Override
     public void onActivityResult(int requestCode, int responseCode, Intent data)
     {
-       // super.onActivityResult(requestCode, responseCode, data);
-
         if(requestCode == REQUEST_CAMERA_CODE && responseCode == RESULT_OK)
         {
             this.imageURI = this.photoURI;
@@ -178,20 +160,18 @@ public class LoadCaptureImageMenu extends AppCompatActivity
         return result;
     }
 
-    public void extractData()
+    public void extractData(String data)
     {
         Gson gson = new Gson();
-        OCR ocr = gson.fromJson(this.apiResponse, OCR.class);
+        OCR ocr = gson.fromJson(data, OCR.class);
 
         businessCard = new BusinessCard(0, "Not Found!", "Not Found!", "Not Found!", "Not Found!", "Not Found!", "Not Found!", "Not Found!");
 
-        //TODO: FIX THIS FUCKING SHIT
-
-            //businessCard.setMobileNumber(StringHelper.regexMatch(region, "^d+$"));
-           // businessCard.setEmail(StringHelper.regexMatch(region, "(?i)^([a-z0-9_.-]+)@([da-z.-]+).([a-z.]{2,6})$"));
-           // businessCard.setWebsite(StringHelper.regexMatch(region, "^(http:\\/\\/|https:\\/\\/)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{3}.?([a-z]+)?$"));
-
-       // Log.println(Log.DEBUG, "TextRecognition", "Regions size: " + ocr.regions.size());
+        businessCard.setFirstLastName(StringHelper.regexMatch(ocr.regions, "([A-Z][a-z]*[A-Z][a-z]*)|([A-Z][a-z]*\\s[A-Z][a-z]*)"));
+        businessCard.setCompanyName(StringHelper.regexMatch(ocr.regions, "/(?:^|\\s)(?:Corporation|Corp|Inc|Incorporated|Company|LTD|PLLC|P\\.C)\\.?$/ig;"));
+        businessCard.setMobileNumber(StringHelper.regexMatch(ocr.regions, "\\d{10}"));
+        businessCard.setEmail(StringHelper.regexMatch(ocr.regions, "([a-z0-9_.-]+)@([da-z.-]+).([a-z.]{3,6})"));
+        businessCard.setWebsite(StringHelper.regexMatch(ocr.regions, "^www..*$"));
 
         this.pushToDatabase();
     }
@@ -249,6 +229,8 @@ public class LoadCaptureImageMenu extends AppCompatActivity
         @Override
         protected void onPostExecute(String data)
         {
+            super.onPostExecute(data);
+
             if (this.exception != null)
             {
                 Log.println(Log.ERROR, "ProjectOxfordAPI", this.exception.getMessage());
@@ -256,9 +238,8 @@ public class LoadCaptureImageMenu extends AppCompatActivity
             }
             else
             {
+                extractData(data);
                 if(progressDialog.isShowing()) progressDialog.dismiss();
-                apiResponse = data;
-                extractData();
             }
         }
     }

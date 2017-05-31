@@ -8,7 +8,7 @@
         android:title="@string/quick_access_load"
         app:showAsAction="never" />
     <item
-        android:id="@+id/quick_access_capture"
+        android:id="@+id/actions_quick_access_capture"
         android:orderInCategory="100"
         android:title="@string/quick_access_capture"
         app:showAsAction="never" />

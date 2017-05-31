@@ -84,6 +84,27 @@ public class BusinessCard implements Parcelable
         this.lastName = name;
     }
 
+    public void setFirstLastName(String fullName)
+    {
+        String[] parts = fullName.split(" ");
+
+        if(parts.length == 1)
+        {
+            this.firstName = parts[0];
+            this.lastName = "Not Found!";
+        }
+        else if(parts.length == 2)
+        {
+            this.firstName = parts[0];
+            this.lastName = parts[1];
+        }
+        else
+        {
+            this.firstName = "Not Found!";
+            this.lastName = "Not Found!";
+        }
+    }
+
     public void setEmail(String email)
     {
         this.email = email;

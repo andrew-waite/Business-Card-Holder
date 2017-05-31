@@ -6,7 +6,8 @@ import com.microsoft.projectoxford.vision.contract.Line;
 import com.microsoft.projectoxford.vision.contract.Region;
 import com.microsoft.projectoxford.vision.contract.Word;
 
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Andrew on 7/03/2017.
@@ -22,27 +23,55 @@ public class StringHelper
         return false;
     }
 
-    public static String regexMatch(Region region, String pattern)
+    public static String regexMatch(List<Region> regions, String pattern)
     {
+        List<String> linesFound = new ArrayList<>();
 
-        for (Line line: region.lines)
+        String defaultReturn = "Not Found!";
+
+        for(Region region : regions)
         {
-            String temp = "";
-
-            for(Word word : line.words)
+            for (Line line : region.lines)
             {
-                //if(word.text.matches(pattern))
+                String temp = "";
+
+                for (Word word : line.words)
+                {
                     temp += word.text;
+                }
+
+                linesFound.add(temp);
             }
-
-            Log.println(Log.DEBUG, "StringHelper", "words: " + temp);
-
-            if(temp.matches(pattern))
-                return temp;
-            else
-                return "Not Found!";
         }
 
-        return "Not Found!";
+
+        for(int i = 0; i < linesFound.size(); i++)
+        {
+            if(linesFound.get(i).matches("(?i)^(w:|website:|e:|email:|p:|phone:|m:|mobile:|mail:|web:|address:|ph:).*$"))
+            {
+                linesFound.set(i, linesFound.get(i).replaceAll("(?i)w:|website:|e:|email:|p:|phone:|m:|mobile:|mail:|web:|address:|-|ph:", ""));
+            }
+            else if(linesFound.get(i).matches("([A-Z][a-z]*[A-Z][a-z]*)"))
+            {
+                String temp = linesFound.get(i);
+                temp = temp.replaceAll("(?!^)([A-Z])", " $1");
+                linesFound.set(i, temp);
+            }
+            else
+                continue;
+        }
+
+        for(String string : linesFound)
+        {
+            if (string.matches(pattern))
+            {
+                return string;
+            }
+            else
+                continue;
+
+        }
+
+        return defaultReturn;
     }
 }

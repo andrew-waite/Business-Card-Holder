@@ -37,7 +37,7 @@ public class MainMenu extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.actions_quick_access_load || id == R.id.actions_quick_access_load)
+        if (id == R.id.actions_quick_access_load || id == R.id.actions_quick_access_capture)
         {
             Intent intent = new Intent(MainMenu.this, LoadCaptureImageMenu.class);
             startActivity(intent);
